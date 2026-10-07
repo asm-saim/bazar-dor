@@ -33,7 +33,6 @@ const Header = () => {
           </button>
         </div>
       </div>
-      {/* Navlinks */}
           </header>
   );
 };
