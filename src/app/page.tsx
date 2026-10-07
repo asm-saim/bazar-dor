@@ -1,5 +1,7 @@
 import Image from "next/image";
 
 export default function Home() {
-  return <div>hello form app page</div>;
+  return <div>hello form app page
+    
+  </div>;
 }
