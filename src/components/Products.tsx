@@ -1,4 +1,4 @@
-import { getProducts, formatPct } from "@/lib/api";
+import { getProducts } from "@/lib/data";
 import ProductSection from "./ProductSection";
 
 const byBiggestChange = (a: { change?: { pct: number } }, b: { change?: { pct: number } }) =>

@@ -2,32 +2,26 @@
 
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
-
-export interface IProduct {
-  id: string;
-  image: string;
-  nameBn: string;
-  today: number;
-  change: { dir: "up" | "down"; pct: number };
-}
-
-const toBn = (num: number) =>
-  num.toLocaleString("bn-BD", { useGrouping: false, maximumFractionDigits: 1 });
+import { IProduct, formatPrice, formatPct, unitBn } from "@/lib/api";
 
 const MarqueeClient = ({ data }: { data: IProduct[] }) => {
   return (
-    <MarqueeText className="py-0.5 md:py-0.5 lg:py-1" direction="right" duration={15}>
+    <MarqueeText className="py-0.5 lg:py-1" direction="right" duration={15}>
       {data.map((product) => (
         <div
           key={product.id}
-          className="flex items-center whitespace-nowrap gap-1 md:gap-1.5 lg:gap-2 mx-3 md:mx-5 lg:mx-6 text-xs md:text-sm lg:text-sm"
+          className="flex items-center whitespace-nowrap gap-1 md:gap-1.5 lg:gap-2 mx-3 md:mx-5 lg:mx-6 text-xs md:text-sm"
         >
           <span>{product.image}</span>
-          <span className="font-semibold">{product.nameBn}</span>
-          <span>{`${toBn(product.today)} টাকা/কেজি`}</span>
-          <span className={product.change.dir === "up" ? "text-green-600" : "text-red-600"}>
-            {product.change.dir === "up" ? "▲" : "▼"} {toBn(product.change.pct)}%
+          <span className="font-medium">{product.nameBn}</span>
+          <span>
+            {formatPrice(product.today)} টাকা/{unitBn(product.unit).replace("প্রতি ", "")}
           </span>
+          {product.change && product.change.dir !== "flat" && (
+            <span className={product.change.dir === "up" ? "text-red-600" : "text-green-600"}>
+              {product.change.dir === "up" ? "▲" : "▼"} {formatPct(Math.abs(product.change.pct))}%
+            </span>
+          )}
         </div>
       ))}
     </MarqueeText>

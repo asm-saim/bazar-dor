@@ -1,12 +1,11 @@
-import MarqueeClient, { IProduct } from "./MarqueeClient";
+import { getProducts } from "@/lib/data";
+import MarqueeClient from "./MarqueeClient";
 
 const Marquee = async () => {
-  const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
-  const data: IProduct[] = await res.json();
-  console.log(data);
+  const data = await getProducts();
 
   return (
-    <div className="border-b border-gray-100">
+    <div className="border-b border-gray-100 bg-[#FAFCFA]">
       <MarqueeClient data={data} />
     </div>
   );

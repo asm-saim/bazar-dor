@@ -1,19 +1,32 @@
+import { Suspense } from "react";
 import Image from "next/image";
+import { cacheLife } from "next/cache";
 
-const Hero = () => {
+// defined OUTSIDE Hero
+const TodayBadge = async () => {
+  "use cache";
+  cacheLife("minutes"); // re-computed within about a minute
+
   const today = new Date().toLocaleDateString("bn-BD", {
     dateStyle: "full",
+    timeZone: "Asia/Dhaka",
   });
 
+  return (
+    <span className="inline-block rounded-full bg-[#] text-green-800 text-xs font-semibold px-3 py-1">{today}</span>
+  );
+};
+
+const Hero = () => {
   return (
     <section className="max-w-6xl mx-auto px-3 md:px-4 py-4 md:py-6">
       <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 md:gap-8 rounded-3xl border border-gray-200 bg-[#FAFCFA] px-5 py-6 md:px-10 md:py-10">
         {/* left part */}
         <div className="w-full md:max-w-xl text-center md:text-left">
           {/* eyebrow */}
-          <span className="inline-block rounded-full bg-green-100 text-green-800 text-xs font-semibold px-3 py-1">
-            {today}
-          </span>
+          <Suspense fallback={<span className="inline-block h-6 w-40 rounded-full bg-green-100" />}>
+            <TodayBadge />
+          </Suspense>
 
           {/* heading */}
           <h1 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-gray-900">
@@ -35,7 +48,7 @@ const Hero = () => {
           </a>
         </div>
 
-        {/* right part: hero image */}
+        {/* right part */}
         <div className="shrink-0">
           <Image
             src="/bazar-hero.png"
