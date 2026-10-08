@@ -2,13 +2,13 @@ import { Suspense } from "react";
 import { getProductsByCategory } from "@/lib/data";
 import CategoryView from "@/components/CategoryView";
 import CategorySkeleton from "@/components/CategorySkeleton";
-import CategoryEmpty from "@/components/CategoryEmpty";
+import { notFound } from "next/navigation";
 
 const CategoryProducts = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
   const products = await getProductsByCategory(slug);
 
-  if (products.length === 0) return <CategoryEmpty />;
+  if (products.length === 0) notFound();
 
   return <CategoryView products={products} />;
 };
