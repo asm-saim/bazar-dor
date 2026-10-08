@@ -5,10 +5,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      {/* ... */}
-      <section id="সব-পণ্য" className="scroll-mt-20 max-w-6xl mx-auto px-4">
-        <Products></Products>
-      </section>
+      <Products></Products>
     </div>
   );
 }

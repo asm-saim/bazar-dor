@@ -1,6 +1,7 @@
 export interface IProduct {
   id: number;
   slug: string;
+  
   nameBn: string;
   category: string;
   categoryNameBn: string;
@@ -24,7 +25,7 @@ const UNIT_BN: Record<string, string> = {
   kg: "প্রতি কেজি",
   g: "প্রতি গ্রাম",
   l: "প্রতি লিটার",
-  liter: "প্রতি লিটার",
+  litre: "প্রতি লিটার",
   dozen: "প্রতি ডজন",
   piece: "প্রতি পিস",
   pcs: "প্রতি পিস",

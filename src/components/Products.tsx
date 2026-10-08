@@ -21,7 +21,7 @@ const Products = async () => {
       <ProductSection tone="up" title="আজ দাম বেড়েছে" products={increased} />
       <ProductSection tone="down" title="আজ দাম কমেছে" products={decreased} />
       <ProductSection
-        id="সব-পণ্য"
+        id="all-products"
         title="সব পণ্য"
         subtitle={`মোট ${products.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে`}
         products={products}

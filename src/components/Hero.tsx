@@ -28,7 +28,7 @@ const Hero = () => {
 
           {/* CTA */}
           <a
-            href="#সব-পণ্য"
+            href="#all-products"
             className="mt-5 inline-block rounded-lg bg-green-700 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_6px_6px_-4px_rgba(21,128,61,0.8)] hover:bg-green-800 transition-colors"
           >
             সব পণ্য দেখুন
