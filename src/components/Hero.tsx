@@ -13,7 +13,7 @@ const TodayBadge = async () => {
   });
 
   return (
-    <span className="inline-block rounded-full bg-[#] text-green-800 text-xs font-semibold px-3 py-1">{today}</span>
+    <span className="inline-block rounded-full bg-[#E1F1E7] text-[#05893E] text-xs font-semibold px-3 py-2">{today}</span>
   );
 };
 

@@ -12,10 +12,13 @@ const hindSiliguri = Hind_Siliguri({
   variable: "--font-hind-siliguri",
 });
 
-// export const metadata: Metadata = {
-//   title: "Bangla News 24",
-//   description: "Bangla News Portal",
-// };
+export const metadata: Metadata = {
+  title: {
+    default: "বাজার দর",
+    template: "%s | বাজার দর",
+  },
+  description: "চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দৈনিক বাজারদর।",
+};
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
