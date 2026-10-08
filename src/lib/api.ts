@@ -39,3 +39,10 @@ export interface IMarket {
 export interface IProductDetail extends IProduct {
   markets: IMarket[];
 }
+
+export interface ICategory {
+  id: string;
+  slug: string;
+  icon: string;
+  nameBn: string;
+}
