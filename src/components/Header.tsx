@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const currDate = new Date().toLocaleDateString("bn-BD", {
   dateStyle: "full",
@@ -19,7 +20,9 @@ const Header = () => {
           />
 
           <div className="min-w-0">
-            <h1 className="font-bold text-xl md:text-2xl leading-tight">বাজার দর</h1>
+            <Link href="/">
+              <h1 className="font-bold text-xl md:text-2xl leading-tight">বাজার দর</h1>
+            </Link>
             <p className="text-xs md:text-sm truncate text-gray-600">{currDate}</p>
           </div>
         </div>

@@ -28,3 +28,14 @@ export const formatPrice = (num?: number | null) =>
 
 export const formatPct = (num?: number | null) =>
   num == null ? "-" : num.toLocaleString("bn-BD", { useGrouping: false, maximumFractionDigits: 1 });
+
+export interface IMarket {
+  market: string;
+  division: string;
+  min: number;
+  max: number;
+}
+
+export interface IProductDetail extends IProduct {
+  markets: IMarket[];
+}
