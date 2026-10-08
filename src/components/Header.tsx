@@ -7,7 +7,7 @@ const currDate = new Date().toLocaleDateString("bn-BD", {
 
 const Header = () => {
   return (
-    <header className="w-full py-2 border-b border-gray-100">
+    <header className="w-full py-3 border-b border-gray-100">
       <div className="max-w-6xl mx-auto px-3 md:px-4 flex justify-between items-center gap-2">
         {/* left part */}
         <div className="flex gap-2 md:gap-3 items-center min-w-0">

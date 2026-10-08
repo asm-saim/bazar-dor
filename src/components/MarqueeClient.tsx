@@ -20,7 +20,7 @@ const MarqueeClient = ({ data }: { data: IProduct[] }) => {
       {data.map((product) => (
         <div
           key={product.id}
-          className="flex items-center whitespace-nowrap gap-1 md:gap-1.5 lg:gap-2 mx-3 md:mx-5 lg:mx-6 text-xs md:text-sm lg:text-base"
+          className="flex items-center whitespace-nowrap gap-1 md:gap-1.5 lg:gap-2 mx-3 md:mx-5 lg:mx-6 text-xs md:text-sm lg:text-sm"
         >
           <span>{product.image}</span>
           <span className="font-semibold">{product.nameBn}</span>

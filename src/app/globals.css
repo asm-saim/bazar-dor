@@ -4,3 +4,7 @@
 @theme inline {
   --font-sans: var(--font-hind-siliguri), sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
