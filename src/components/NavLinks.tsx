@@ -1,9 +1,12 @@
 import { cacheLife } from "next/cache";
+import Link from "next/link";
 
 interface ICategory {
   id: string | number;
   icon: string;
   nameBn: string;
+  category: string;
+  slug:string
 }
 
 const getCategories = async (): Promise<ICategory[]> => {
@@ -21,10 +24,12 @@ const NavLinks = async () => {
     <div className="border-b border-gray-200 bg-[#FAFCFA]">
       <div className="w-full max-w-6xl mx-auto flex flex-wrap justify-start px-3 sm:px-4 md:px-6 lg:px-10 gap-x-3 sm:gap-x-4 md:gap-x-6 lg:gap-x-10 gap-y-1 lg:gap-y-2 py-3 text-xs md:text-sm">
         {data.map((item) => (
-          <div key={item.id} className="flex items-center font-semibold gap-1 whitespace-nowrap">
-            <span>{item.icon}</span>
-            <span>{item.nameBn}</span>
-          </div>
+          <Link key={item.id} href={`/category/${item.slug}`}>
+            <div key={item.id} className="flex items-center font-semibold gap-1 whitespace-nowrap">
+              <span>{item.icon}</span>
+              <span>{item.nameBn}</span>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
