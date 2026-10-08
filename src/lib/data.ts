@@ -10,7 +10,7 @@ export const getProducts = async (): Promise<IProduct[]> => {
   return res.json();
 };
 
-//for category section: 
+//for category section:
 export const getProductsByCategory = async (category: string): Promise<IProduct[]> => {
   "use cache";
   cacheLife("hours");
@@ -24,15 +24,13 @@ export const getProductsByCategory = async (category: string): Promise<IProduct[
   return Array.isArray(data) ? data : [];
 };
 
-
+// await new Promise((r) => setTimeout(r, 2000)); // temporary: remove after testing
 //for product detail:
 export const getProduct = async (id: string): Promise<IProductDetail | null> => {
   "use cache";
   cacheLife("hours");
 
-  const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${encodeURIComponent(id)}`
-  );
+  const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/products/${encodeURIComponent(id)}`);
   if (!res.ok) return null;
 
   const data = await res.json();
