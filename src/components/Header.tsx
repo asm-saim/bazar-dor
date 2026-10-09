@@ -29,10 +29,14 @@ const Header = () => {
 
         {/* right part */}
         <div className="flex items-center gap-3 md:gap-5 shrink-0">
-          <button className="font-semibold cursor-pointer text-sm md:text-base">সাইন ইন</button>
-          <button className="btn btn-sm md:btn-md bg-green-700 text-white font-semibold border-none shadow-[0_6px_6px_-4px] shadow-green-700/80 rounded-lg">
-            সাইন আপ
-          </button>
+          <Link href="/sign-in">
+            <button className="font-semibold cursor-pointer text-sm md:text-base">সাইন ইন</button>
+          </Link>
+          <Link href="/sign-up">
+            <button className="btn btn-sm md:btn-md bg-green-700 text-white font-semibold border-none shadow-[0_6px_6px_-4px] shadow-green-700/80 rounded-lg">
+              সাইন আপ
+            </button>
+          </Link>
         </div>
       </div>
     </header>
