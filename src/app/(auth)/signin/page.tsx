@@ -6,38 +6,70 @@ import { useRouter } from "next/navigation";
 import { Button, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { signIn } from "@/lib/auth-client";
 import { GoogleIcon, GithubIcon } from "@/components/SocialIcons";
+import { toast } from "sonner";
 
 const inputClass = "w-full rounded-lg bg-gray-50 text-sm";
 
 const SignInPage = () => {
   const router = useRouter();
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setError("");
+
+  //   const formData = new FormData(e.currentTarget);
+  //   const email = String(formData.get("email") ?? "");
+  //   const password = String(formData.get("password") ?? "");
+
+  //   setLoading(true);
+  //   const { error } = await signIn.email({
+  //     email,
+  //     password,
+  //     rememberMe: true,
+  //     callbackURL: "/",
+  //   });
+  //   setLoading(false);
+
+  //   if (error) {
+  //     setError(error.message ?? "ইমেইল বা পাসওয়ার্ড সঠিক নয়।");
+  //     return;
+  //   }
+
+  //   router.push("/");
+  //   router.refresh();
+  // };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
 
     const formData = new FormData(e.currentTarget);
     const email = String(formData.get("email") ?? "");
     const password = String(formData.get("password") ?? "");
 
     setLoading(true);
-    const { error } = await signIn.email({
-      email,
-      password,
-      rememberMe: true,
-      callbackURL: "/",
-    });
-    setLoading(false);
 
-    if (error) {
-      setError(error.message ?? "ইমেইল বা পাসওয়ার্ড সঠিক নয়।");
-      return;
+    try {
+      const { error } = await signIn.email({
+        email,
+        password,
+        rememberMe: true,
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.error("ইমেইল বা পাসওয়ার্ড সঠিক নয়");
+        return;
+      }
+
+      toast.success("সফলভাবে সাইন ইন হয়েছে");
+
+      router.replace("/");
+      router.refresh();
+    } catch {
+      toast.error("সাইন ইন করতে সমস্যা হয়েছে");
+    } finally {
+      setLoading(false);
     }
-
-    router.push("/");
-    router.refresh();
   };
 
   const socialSignIn = (provider: "google" | "github") => {
@@ -81,8 +113,6 @@ const SignInPage = () => {
             <FieldError />
           </TextField>
 
-          {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-xs md:text-sm text-red-600">{error}</p>}
-
           <Button
             type="submit"
             isDisabled={loading}
@@ -123,7 +153,7 @@ const SignInPage = () => {
 
         <p className="mt-4 text-center text-xs md:text-sm text-gray-600">
           অ্যাকাউন্ট নেই?{" "}
-          <Link href="/sign-up" className="font-semibold text-green-700 hover:underline">
+          <Link href="/signup" className="font-semibold text-green-700 hover:underline">
             সাইন আপ করুন
           </Link>
         </p>

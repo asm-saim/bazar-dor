@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import NavLinks from "@/components/NavLinks";
 import Marquee from "@/components/Marquee";
 import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali", "latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="bn" data-theme="light" className={`${hindSiliguri.variable} h-full antialiased`}>
       <body suppressHydrationWarning className="min-h-full flex flex-col font-sans">
+         <Toaster position="top-center" richColors closeButton />
         <Header />
         <NavLinks></NavLinks>
         <Marquee></Marquee>

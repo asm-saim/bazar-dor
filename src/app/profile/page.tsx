@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Button, FieldError, Form, Input, Label, TextField, toast } from "@heroui/react";
+import { Button, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { updateUser, useSession } from "@/lib/auth-client";
 import { validateName } from "@/lib/auth-helpers";
 import { useSignOut } from "@/lib/use-sign-out";
 import { ProfileSkeleton } from "@/components/AuthSkeleton";
+import { toast } from "sonner";
 
 const ProfilePage = () => {
   const { data: session, isPending } = useSession();
@@ -23,7 +24,7 @@ const ProfilePage = () => {
 
     const invalid = validateName(name);
     if (invalid) {
-      toast.danger(invalid);
+      toast.warning(invalid);
       return;
     }
 
@@ -32,7 +33,7 @@ const ProfilePage = () => {
     setLoading(false);
 
     if (error) {
-      toast.danger(error.message ?? "তথ্য আপডেট করা যায়নি");
+      toast.warning(error.message ?? "তথ্য আপডেট করা যায়নি");
       return;
     }
     toast.success("তথ্য সফলভাবে আপডেট হয়েছে");

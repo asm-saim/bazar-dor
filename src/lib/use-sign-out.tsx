@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { toast } from "@heroui/react";
 import { signOut } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 export const useSignOut = () => {
   const router = useRouter();
@@ -10,7 +10,7 @@ export const useSignOut = () => {
   return async () => {
     const { error } = await signOut();
     if (error) {
-      toast.danger("সাইন আউট করা যায়নি, আবার চেষ্টা করুন");
+      toast.warning("সাইন আউট করা যায়নি, আবার চেষ্টা করুন");
       return;
     }
     toast.success("সফলভাবে সাইন আউট হয়েছে");

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { signIn, signUp } from "@/lib/auth-client";
 import { GoogleIcon, GithubIcon } from "@/components/SocialIcons";
+import { toast } from "sonner";
 
 const inputClass = "w-full rounded-lg bg-gray-50 text-sm";
 
@@ -13,33 +14,37 @@ const SignUpPage = () => {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
 
     const formData = new FormData(e.currentTarget);
     const name = String(formData.get("name") ?? "");
     const email = String(formData.get("email") ?? "");
 
     setLoading(true);
-    const { error } = await signUp.email({
-      name,
-      email,
-      password,
-      callbackURL: "/",
-    });
-    setLoading(false);
 
-    if (error) {
-      setError(error.message ?? "কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।");
-      return;
+    try {
+      const { error } = await signUp.email({
+        name,
+        email,
+        password,
+        callbackURL: "/signin",
+      });
+
+      if (error) {
+        toast.error(error.message ?? "কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+        return;
+      }
+
+      toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এখন সাইন ইন করুন।");
+      router.replace("/signin");
+    } catch {
+      toast.error("কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+    } finally {
+      setLoading(false);
     }
-
-    router.push("/");
-    router.refresh();
   };
 
   const socialSignIn = (provider: "google" | "github") => {
@@ -106,8 +111,6 @@ const SignUpPage = () => {
             <FieldError />
           </TextField>
 
-          {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-xs md:text-sm text-red-600">{error}</p>}
-
           <Button
             type="submit"
             isDisabled={loading}
@@ -148,7 +151,7 @@ const SignUpPage = () => {
 
         <p className="mt-4 text-center text-xs md:text-sm text-gray-600">
           অ্যাকাউন্ট আছে?{" "}
-          <Link href="/sign-in" className="font-semibold text-green-700 hover:underline">
+          <Link href="/signin" className="font-semibold text-green-700 hover:underline">
             সাইন ইন করুন
           </Link>
         </p>
