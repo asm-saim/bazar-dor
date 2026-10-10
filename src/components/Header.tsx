@@ -19,7 +19,7 @@ const Header = () => {
         <div className="flex gap-2 md:gap-3 items-center min-w-0">
           <Image
             className="bg-green-700 p-2 rounded-lg shrink-0 w-9 h-9 md:w-[45px] md:h-[45px]"
-            src="/logo-icon.png"
+            src="/logo-icon-v2.png"
             width={45}
             height={45}
             alt="nav image"
