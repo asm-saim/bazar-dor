@@ -29,11 +29,11 @@ Visitors can see which prices went up or down today, browse items by category, a
 
 ## Key Features
 
-- **📈 Live price ticker and daily movement.** An infinite-scrolling ticker shows each product's emoji, name, price and ▲/▼ change. The home page highlights the **top 6 price risers** and **top 6 fallers**, and lists every product with a colour-coded change badge (red for up, green for down, gray for no change).
-- **🗂️ Category browsing with sorting.** A category bar highlights the active category. Each category page can be sorted by default order, price low to high, or price high to low, comparing real numeric values and not text.
-- **🔎 Detailed, market-wise product pages.** Every product has its own page with the price summary (minimum, maximum, average) and a table of prices for each bazaar by division. These pages are **protected** and open only after login.
-- **🔐 Secure authentication with Better Auth.** Sign in or sign up with **email and password**, **Google** or **GitHub**. Toast messages confirm login, sign-up, logout and validation errors, and protected pages redirect visitors to the sign-in page.
-- **👤 Profile management.** Logged-in users get a header menu with their photo (when available) and name. They can open **My Profile** and update their name on a separate **Update Information** page.
+- **Live price ticker and daily movement.** A scrolling ticker shows each product's emoji, name, price and daily change. The home page highlights the **top 6 price risers** and **top 6 fallers**, and lists every product with a color-coded change badge (red for up, green for down, gray for no change).
+- **Category browsing with sorting.** A category bar highlights the active category. Each category page can be sorted by default order, price low to high, or price high to low, comparing real numeric values and not text.
+- **Detailed, market-wise product pages.** Every product has its own page with the price summary (minimum, maximum, average) and a table of prices for each bazaar by division. These pages are **protected** and open only after login.
+- **Secure authentication with Better Auth.** Sign in or sign up with **email and password**, **Google** or **GitHub**. Toast messages confirm login, sign-up, logout and validation errors, and protected pages redirect visitors to the sign-in page.
+- **Profile management.** Logged-in users get a header menu with their photo (when available) and name. They can open **My Profile** and update their name on a separate **Update Information** page.
 
 **Also included**
 
