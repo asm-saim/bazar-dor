@@ -29,7 +29,7 @@ Visitors can see which prices went up or down today, browse items by category, a
 
 ## Key Features
 
-- **Live price ticker and daily movement.** A scrolling ticker shows each product's emoji, name, price and daily change. The home page highlights the **top 6 price risers** and **top 6 fallers**, and lists every product with a color-coded change badge (red for up, green for down, gray for no change).
+- **Live price ticker and daily movement.** A scrolling ticker shows each product's emoji, name, price and daily change. The home page lists the **top 6 risers** and **top 6 fallers**, and every product has a colour-coded change badge.
 - **Category browsing with sorting.** A category bar highlights the active category. Each category page can be sorted by default order, price low to high, or price high to low, comparing real numeric values and not text.
 - **Detailed, market-wise product pages.** Every product has its own page with the price summary (minimum, maximum, average) and a table of prices for each bazaar by division. These pages are **protected** and open only after login.
 - **Secure authentication with Better Auth.** Sign in or sign up with **email and password**, **Google** or **GitHub**. Toast messages confirm login, sign-up, logout and validation errors, and protected pages redirect visitors to the sign-in page.
