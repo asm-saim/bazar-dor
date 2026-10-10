@@ -14,31 +14,6 @@ const SignInPage = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  // const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setError("");
-
-  //   const formData = new FormData(e.currentTarget);
-  //   const email = String(formData.get("email") ?? "");
-  //   const password = String(formData.get("password") ?? "");
-
-  //   setLoading(true);
-  //   const { error } = await signIn.email({
-  //     email,
-  //     password,
-  //     rememberMe: true,
-  //     callbackURL: "/",
-  //   });
-  //   setLoading(false);
-
-  //   if (error) {
-  //     setError(error.message ?? "ইমেইল বা পাসওয়ার্ড সঠিক নয়।");
-  //     return;
-  //   }
-
-  //   router.push("/");
-  //   router.refresh();
-  // };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
