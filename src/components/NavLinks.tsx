@@ -7,7 +7,7 @@ const getCategories = async (): Promise<ICategory[]> => {
   "use cache";
   cacheLife("days"); // categories rarely change
 
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/categories");
+  const res = await fetch("https://openapi.programming-hero.com/api/bazardor/categories");
   return res.json();
 };
 

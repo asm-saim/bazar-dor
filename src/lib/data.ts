@@ -6,7 +6,7 @@ export const getProducts = async (): Promise<IProduct[]> => {
   "use cache";
   cacheLife("hours");
 
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
   return res.json();
 };
 
@@ -16,7 +16,7 @@ export const getProductsByCategory = async (category: string): Promise<IProduct[
   cacheLife("hours");
 
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/products?category=${encodeURIComponent(category)}`,
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${encodeURIComponent(category)}`,
   );
   if (!res.ok) return [];
 
@@ -29,7 +29,7 @@ export const getProduct = async (id: string): Promise<IProductDetail | null> => 
   "use cache";
   cacheLife("hours");
 
-  const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products/${encodeURIComponent(id)}`);
+  const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${encodeURIComponent(id)}`);
   if (!res.ok) return null;
 
   const data = await res.json();
