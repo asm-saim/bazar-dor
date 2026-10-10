@@ -1,43 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import { Button, FieldError, Form, Input, Label, TextField } from "@heroui/react";
-import { updateUser, useSession } from "@/lib/auth-client";
-import { validateName } from "@/lib/auth-helpers";
+import Link from "next/link";
+import { useSession } from "@/lib/auth-client";
 import { useSignOut } from "@/lib/use-sign-out";
 import { ProfileSkeleton } from "@/components/AuthSkeleton";
-import { toast } from "sonner";
 
 const ProfilePage = () => {
   const { data: session, isPending } = useSession();
   const signOut = useSignOut();
-  const [loading, setLoading] = useState(false);
 
   if (isPending) return <ProfileSkeleton />;
   if (!session) return null; // proxy.ts already redirects logged-out users
 
   const { user } = session;
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const name = String(new FormData(e.currentTarget).get("name") ?? "").trim();
-
-    const invalid = validateName(name);
-    if (invalid) {
-      toast.warning(invalid);
-      return;
-    }
-
-    setLoading(true);
-    const { error } = await updateUser({ name });
-    setLoading(false);
-
-    if (error) {
-      toast.warning(error.message ?? "তথ্য আপডেট করা যায়নি");
-      return;
-    }
-    toast.success("তথ্য সফলভাবে আপডেট হয়েছে");
-  };
 
   return (
     <section className="max-w-3xl mx-auto px-3 md:px-4 py-6 md:py-10 space-y-4">
@@ -78,25 +53,28 @@ const ProfilePage = () => {
         </button>
       </div>
 
-      {/* info card */}
+      {/* info card (read-only) */}
       <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 md:p-5 shadow-sm">
         <h2 className="text-base md:text-lg font-bold">তথ্য</h2>
 
-        <Form className="mt-4 flex flex-col gap-4" onSubmit={onSubmit} validationBehavior="aria">
-          <TextField name="name" defaultValue={user.name} validate={validateName}>
-            <Label className="text-sm font-semibold">নাম</Label>
-            <Input className="w-full rounded-lg bg-gray-50 text-sm" placeholder="আপনার নাম" />
-            <FieldError />
-          </TextField>
+        <dl className="mt-4 space-y-3">
+          <div>
+            <dt className="text-xs text-gray-500">নাম</dt>
+            <dd className="text-sm md:text-base font-semibold">{user.name}</dd>
+          </div>
+          <div>
+            <dt className="text-xs text-gray-500">ইমেইল</dt>
+            <dd className="text-sm md:text-base font-semibold break-all">{user.email}</dd>
+          </div>
+        </dl>
 
-          <Button
-            type="submit"
-            isDisabled={loading}
-            className="w-full rounded-lg bg-green-700 font-semibold text-white shadow-[0_6px_6px_-4px_rgba(21,128,61,0.8)] hover:bg-green-800"
-          >
-            {loading ? "অপেক্ষা করুন..." : "আপডেট"}
-          </Button>
-        </Form>
+        {/* update button: goes to ANOTHER route */}
+        <Link
+          href="/profile/update"
+          className="mt-5 block w-full rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-[0_6px_6px_-4px_rgba(21,128,61,0.8)] hover:bg-green-800 transition-colors"
+        >
+          আপডেট
+        </Link>
       </div>
     </section>
   );
