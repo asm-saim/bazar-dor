@@ -9,11 +9,12 @@ const TodayBadge = async () => {
 
   const today = new Date().toLocaleDateString("bn-BD", {
     dateStyle: "full",
-    timeZone: "Asia/Dhaka",
   });
 
   return (
-    <span className="inline-block rounded-full bg-[#E1F1E7] text-[#05893E] text-xs font-semibold px-3 py-2">{today}</span>
+    <span className="inline-block rounded-full bg-[#E1F1E7] text-[#05893E] text-xs font-semibold px-3 py-2">
+      {today}
+    </span>
   );
 };
 
